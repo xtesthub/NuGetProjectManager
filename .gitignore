@@ -1,0 +1,17 @@
+# VS Project
+**/bin
+**/obj
+/publish
+*.suo
+
+# DOCX-Backupfiles
+/~$*.docx
+~*.docx
+
+# Temporary files
+*.tmp
+*.temp
+
+# NuGet
+**/packages
+*.user
