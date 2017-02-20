@@ -32,6 +32,8 @@
             this.clbAssemblieSelect = new System.Windows.Forms.CheckedListBox();
             this.btnFillProjectList = new System.Windows.Forms.Button();
             this.btnFillAssembleList = new System.Windows.Forms.Button();
+            this.btnCreateNuspec = new System.Windows.Forms.Button();
+            this.lNuspecOutput = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbProjectList
@@ -39,7 +41,7 @@
             this.lbProjectList.FormattingEnabled = true;
             this.lbProjectList.Location = new System.Drawing.Point(12, 41);
             this.lbProjectList.Name = "lbProjectList";
-            this.lbProjectList.Size = new System.Drawing.Size(200, 498);
+            this.lbProjectList.Size = new System.Drawing.Size(200, 264);
             this.lbProjectList.TabIndex = 0;
             // 
             // clbAssemblieSelect
@@ -70,11 +72,33 @@
             this.btnFillAssembleList.UseVisualStyleBackColor = true;
             this.btnFillAssembleList.Click += new System.EventHandler(this.btnFillAssembleList_Click);
             // 
+            // btnCreateNuspec
+            // 
+            this.btnCreateNuspec.Location = new System.Drawing.Point(229, 12);
+            this.btnCreateNuspec.Name = "btnCreateNuspec";
+            this.btnCreateNuspec.Size = new System.Drawing.Size(99, 23);
+            this.btnCreateNuspec.TabIndex = 4;
+            this.btnCreateNuspec.Text = "Create .nuspec";
+            this.btnCreateNuspec.UseVisualStyleBackColor = true;
+            this.btnCreateNuspec.Click += new System.EventHandler(this.btnCreateNuspec_Click);
+            // 
+            // lNuspecOutput
+            // 
+            this.lNuspecOutput.AutoSize = true;
+            this.lNuspecOutput.Location = new System.Drawing.Point(435, 41);
+            this.lNuspecOutput.Name = "lNuspecOutput";
+            this.lNuspecOutput.Size = new System.Drawing.Size(39, 13);
+            this.lNuspecOutput.TabIndex = 5;
+            this.lNuspecOutput.Text = "Output";
+            this.lNuspecOutput.Click += new System.EventHandler(this.lNuspecOutput_Click);
+            // 
             // UserInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.lNuspecOutput);
+            this.Controls.Add(this.btnCreateNuspec);
             this.Controls.Add(this.btnFillAssembleList);
             this.Controls.Add(this.btnFillProjectList);
             this.Controls.Add(this.clbAssemblieSelect);
@@ -82,6 +106,7 @@
             this.Name = "UserInterface";
             this.Text = "NuGetProjectManager";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -91,6 +116,8 @@
         private System.Windows.Forms.CheckedListBox clbAssemblieSelect;
         private System.Windows.Forms.Button btnFillProjectList;
         private System.Windows.Forms.Button btnFillAssembleList;
+        private System.Windows.Forms.Button btnCreateNuspec;
+        private System.Windows.Forms.Label lNuspecOutput;
     }
 }
 

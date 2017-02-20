@@ -1,0 +1,72 @@
+        private void lbFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(@"C:\Visual Studios\nuget\assemblies");
+
+            foreach (System.IO.FileInfo f in ParentDirectory.GetFiles())
+            {
+                clbFiles.Items.Add(f.Name);
+            }
+        }
+
+        private void btnNupecFile_Click(object sender, EventArgs e)
+        {
+            if(clbFiles.CheckedItems.Count != 0)
+            {
+                string s = "";
+                for (int x = 0; x <= clbFiles.CheckedItems.Count - 1; x++)
+                {
+                    s = s + clbFiles.CheckedItems[x].ToString() + "\n";
+                }
+                laNuspecFile.Text = s;
+            }
+        }
+
+        private void btnXmlReader_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "XML|*.xml";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.Load(ofd.FileName);
+                MessageBox.Show(xDoc.SelectSingleNode("package/metadata/id").InnerText);
+            }
+        }
+
+        private void btnClbReader_Click(object sender, EventArgs e)
+        {
+            if (clbFiles.CheckedItems.Count != 0)
+            {
+                for (int x = 0; x <= clbFiles.CheckedItems.Count - 1; x++)
+                {
+                    XmlDocument xDoc2 = new XmlDocument();
+                    xDoc2.Load(clbFiles.CheckedItems[x].ToString());
+                    MessageBox.Show(xDoc2.SelectSingleNode("package/metadata/id").InnerText);
+                }
+            } else {
+                MessageBox.Show("Keine Dateien ausgewählt.");
+            }
+        }
+		
+		            string[] myList = new string[4];
+            myList[0] = "One";
+            myList[1] = "Two";
+            myList[2] = "Three";
+            myList[3] = "Four";
+
+            lbProjectList.Items.AddRange(myList);
+
+			
+		foreach (int indexChecked in clbAssemblieSelect.CheckedIndices)
+        {
+            MessageBox.Show("Index#: " + indexChecked.ToString() + ", is checked. Checked state is:" + clbAssemblieSelect.GetItemCheckState(indexChecked).ToString() + ".");
+        }
+        foreach(object itemChecked in clbAssemblieSelect.CheckedItems)
+        {
+            MessageBox.Show("Item with title: \"" + itemChecked.ToString() + "\", is checked. Checked state is: " +  clbAssemblieSelect.GetItemCheckState(clbAssemblieSelect.Items.IndexOf(itemChecked)).ToString() + ".");
+        }

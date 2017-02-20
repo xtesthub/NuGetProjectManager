@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id</id>
+    <version>$version</version>
+    <authors>$author</authors>
+    <owners>$owners</owners>
+    <licenseUrl>$licenseUrl</licenseUrl>
+    <projectUrl>$projectUrl</projectUrl>
+    <iconUrl>$iconUrl</iconUrl>
+    <requireLicenseAcceptance>$requireLicenseAcceptance</requireLicenseAcceptance>
+    <description>$description</description>
+    <releaseNotes>$releaseNotes</releaseNotes>
+    <copyright>$copyright</copyright>
+    <tags>$tags</tags>
+    <dependencies>
+      <dependency id="SampleDependency" version="1.0" />
+    </dependencies>
+  </metadata>
+</package>

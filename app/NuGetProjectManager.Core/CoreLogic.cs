@@ -8,5 +8,9 @@ namespace NuGetProjectManager.Core
 {
     public class CoreLogic
     {
+        private static void LoadProjectSourceDirectory()
+        {
+            //läd Projektverzeichnis aus .ini und listet alle Projektdateien
+        }
     }
 }
