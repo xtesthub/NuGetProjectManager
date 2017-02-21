@@ -41,7 +41,29 @@ namespace NuGetProjectManager.GUI
             XmlDocument doc = new XmlDocument();
             doc.Load("nuspecConfig.xml");
             NuspecConfig testConfig = new NuspecConfig("100");
-            lNuspecOutput.Text = "test: " + testConfig.id.ToString();
+            //lNuspecOutput.Text = "test: " + testConfig.id.ToString();
+
+            //xdocument erstellen
+            XDocument xmlNuspec = new XDocument(
+                new XElement("package",
+                    new XElement("metadata",
+                        new XElement("id", testConfig.id),
+                        new XElement("version", testConfig.version),
+                        new XElement("authors", testConfig.authors),
+                        new XElement("owners", testConfig.owners),
+                        new XElement("licenseUrl", testConfig.licenseUrl),
+                        new XElement("projectUrl", testConfig.projectUrl),
+                        new XElement("iconUrl", testConfig.iconUrl),
+                        new XElement("requireLicenseAcceptance", testConfig.requireLicenseAcceptance),
+                        new XElement("description", testConfig.description),
+                        new XElement("releaseNotes", testConfig.releaseNotes),
+                        new XElement("copyright", testConfig.copyright),
+                        new XElement("tags", testConfig.tags),
+                        new XElement("dependencies", "<dependency id=" + testConfig.dependenciesId + "version=" + testConfig.dependenciesVersion + "/>")
+                    )
+                )
+            );
+            xmlNuspec.Save(@"C:\Visual Studios\projects\NuGetProjectManager\tmp\data\xmlNuspec.xml", SaveOptions.None);
         }
 
         private void lNuspecOutput_Click(object sender, EventArgs e)
@@ -51,6 +73,7 @@ namespace NuGetProjectManager.GUI
         struct NuspecConfig
         {
             public string id;
+            public string version;
             public string authors;
             public string owners;
             public string licenseUrl;
@@ -61,24 +84,25 @@ namespace NuGetProjectManager.GUI
             public string releaseNotes;
             public string copyright;
             public string tags;
+            public string dependenciesId;
+            public string dependenciesVersion;
 
-            public NuspecConfig(string _id = "no id", string _authors = "no authors", string _owners = "no owners",
-                                string _licenseUrl = "no licenseUrl", string _projectUrl = "no projectUrl",
-                                string _iconUrl = "no iconUrl", string _requireLicenseAcceptance = "no requireLicenseAcceptance",
-                                string _description = "no description", string _releaseNotes = "no releaseNotes",
-                                string _copyright = "no copyright", string _tags = "no tags")
+            public NuspecConfig(string _id = "no id")
             {
                 id = _id;
-                authors = _authors;
-                owners = _owners;
-                licenseUrl = _licenseUrl;
-                projectUrl = _projectUrl;
-                iconUrl = _iconUrl;
-                requireLicenseAcceptance = _requireLicenseAcceptance;
-                description = _description;
-                releaseNotes = _releaseNotes;
-                copyright = _copyright;
-                tags = _tags;
+                version = "no version";
+                authors = "no authors";
+                owners = "no authors";
+                licenseUrl = "no licenseUrl";
+                projectUrl = "no projectUrl";
+                iconUrl = "no iconUrl";
+                requireLicenseAcceptance = "no requireLicenseAcceptance";
+                description = "no description";
+                releaseNotes = "no releaseNotes";
+                copyright = "no copyright";
+                tags = "no tags";
+                dependenciesId = "no dependencies";
+                dependenciesVersion = "1.0";
             }
         }
     }

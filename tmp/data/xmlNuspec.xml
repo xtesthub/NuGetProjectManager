@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>100</id>
+    <version>no version</version>
+    <authors>no authors</authors>
+    <owners>no authors</owners>
+    <licenseUrl>no licenseUrl</licenseUrl>
+    <projectUrl>no projectUrl</projectUrl>
+    <iconUrl>no iconUrl</iconUrl>
+    <requireLicenseAcceptance>no requireLicenseAcceptance</requireLicenseAcceptance>
+    <description>no description</description>
+    <releaseNotes>no releaseNotes</releaseNotes>
+    <copyright>no copyright</copyright>
+    <tags>no tags</tags>
+    <dependencies>&lt;dependency id=no dependenciesversion=1.0/&gt;</dependencies>
+  </metadata>
+</package>
