@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml.Linq;
 using System.Xml;
+using System.Diagnostics;
 
 namespace NuGetProjectManager.GUI
 {
@@ -37,13 +38,14 @@ namespace NuGetProjectManager.GUI
 
         private void btnCreateNuspec_Click(object sender, EventArgs e)
         {
-            //XDocument nuspecConfig = XDocument.Load(@"C:\Visual Studios\projects\NuGetProjectManager\tmp\data\nuspecConfig.xml");
             XmlDocument doc = new XmlDocument();
             doc.Load("nuspecConfig.xml");
             NuspecConfig testConfig = new NuspecConfig("100");
-            //lNuspecOutput.Text = "test: " + testConfig.id.ToString();
 
-            //xdocument erstellen
+            XElement dependencies = new XElement("dependency");
+            dependencies.SetAttributeValue("id", testConfig.dependenciesId);
+            dependencies.SetAttributeValue("version", testConfig.dependenciesVersion);
+
             XDocument xmlNuspec = new XDocument(
                 new XElement("package",
                     new XElement("metadata",
@@ -59,11 +61,16 @@ namespace NuGetProjectManager.GUI
                         new XElement("releaseNotes", testConfig.releaseNotes),
                         new XElement("copyright", testConfig.copyright),
                         new XElement("tags", testConfig.tags),
-                        new XElement("dependencies", "<dependency id=" + testConfig.dependenciesId + "version=" + testConfig.dependenciesVersion + "/>")
+                        new XElement("dependencies", dependencies)
                     )
                 )
             );
-            xmlNuspec.Save(@"C:\Visual Studios\projects\NuGetProjectManager\tmp\data\xmlNuspec.xml", SaveOptions.None);
+            string nugetPath = @"C:\Visual Studios\nuget\nuget.exe";
+            string nugetArg = @"C:\Visual Studios\projects\NuGetProjectManager\tmp\data\xmlNuspec.xml.nuspec";
+            xmlNuspec.Save(@"C:\Visual Studios\projects\NuGetProjectManager\tmp\data\xmlNuspec.xml.nuspec", SaveOptions.None);
+            MessageBox.Show(".nuspec angelegt");
+            var dbgP = Process.Start(nugetPath, $"pack \"{nugetArg}\"");
+            MessageBox.Show("parsing done");
         }
 
         private void lNuspecOutput_Click(object sender, EventArgs e)
@@ -76,9 +83,9 @@ namespace NuGetProjectManager.GUI
             public string version;
             public string authors;
             public string owners;
-            public string licenseUrl;
-            public string projectUrl;
-            public string iconUrl;
+            public Uri licenseUrl;
+            public Uri projectUrl;
+            public Uri iconUrl;
             public string requireLicenseAcceptance;
             public string description;
             public string releaseNotes;
@@ -90,19 +97,49 @@ namespace NuGetProjectManager.GUI
             public NuspecConfig(string _id = "no id")
             {
                 id = _id;
-                version = "no version";
+                version = "1.0.0";
                 authors = "no authors";
                 owners = "no authors";
-                licenseUrl = "no licenseUrl";
-                projectUrl = "no projectUrl";
-                iconUrl = "no iconUrl";
-                requireLicenseAcceptance = "no requireLicenseAcceptance";
+                licenseUrl = new Uri("http://127.0.0.1/");
+                projectUrl = new Uri("http://127.0.0.1/");
+                iconUrl = new Uri("http://127.0.0.1/");
+                requireLicenseAcceptance = "false";
                 description = "no description";
                 releaseNotes = "no releaseNotes";
                 copyright = "no copyright";
                 tags = "no tags";
-                dependenciesId = "no dependencies";
+                dependenciesId = "NoDependencies";
                 dependenciesVersion = "1.0";
+            }
+        }
+                 
+        struct XmlNuspec
+        {
+            public XDocument XmlNuspec(NuspecConfig config)
+            {
+                XElement dependencies = new XElement("dependency");
+                dependencies.SetAttributeValue("id", config.dependenciesId);
+                dependencies.SetAttributeValue("version", config.dependenciesVersion);
+
+                XDocument nuspec = new XDocument(
+                    new XElement("package",
+                        new XElement("id", config.id),
+                        new XElement("version", config.version),
+                        new XElement("authors", config.authors),
+                        new XElement("owners", config.owners),
+                        new XElement("licenseUrl", config.licenseUrl),
+                        new XElement("projectUrl", config.projectUrl),
+                        new XElement("iconUrl", config.iconUrl),
+                        new XElement("requireLicenseAcceptance", config.requireLicenseAcceptance),
+                        new XElement("description", config.description),
+                        new XElement("releaseNotes", config.releaseNotes),
+                        new XElement("copyright", config.copyright),
+                        new XElement("tags", config.tags),
+                        new XElement("dependencies", dependencies)
+                    )    
+                );
+
+                return nuspec;
             }
         }
     }

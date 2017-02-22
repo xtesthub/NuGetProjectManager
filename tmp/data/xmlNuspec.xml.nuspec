@@ -2,17 +2,19 @@
 <package>
   <metadata>
     <id>100</id>
-    <version>no version</version>
+    <version>1.0.0</version>
     <authors>no authors</authors>
     <owners>no authors</owners>
-    <licenseUrl>no licenseUrl</licenseUrl>
-    <projectUrl>no projectUrl</projectUrl>
-    <iconUrl>no iconUrl</iconUrl>
-    <requireLicenseAcceptance>no requireLicenseAcceptance</requireLicenseAcceptance>
+    <licenseUrl>http://127.0.0.1/</licenseUrl>
+    <projectUrl>http://127.0.0.1/</projectUrl>
+    <iconUrl>http://127.0.0.1/</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>no description</description>
     <releaseNotes>no releaseNotes</releaseNotes>
     <copyright>no copyright</copyright>
     <tags>no tags</tags>
-    <dependencies dependency_id="no dependencies" version="1.0" />
+    <dependencies>
+      <dependency id="NoDependencies" version="1.0" />
+    </dependencies>
   </metadata>
 </package>
