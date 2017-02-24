@@ -39,7 +39,7 @@ namespace NuGetProjectManager.GUI
                 {
                     if(x > 0)
                     {
-                        AssemblieList = AssemblieList + clbAssemblieSelect.CheckedItems[x].ToString() + ",";
+                        AssemblieList = AssemblieList + "," + clbAssemblieSelect.CheckedItems[x].ToString();
                     }
                     else
                     {
@@ -48,7 +48,7 @@ namespace NuGetProjectManager.GUI
                 }
 
                 MessageBox.Show(AssemblieList);
-                NuspecConfig testConfig = new NuspecConfig("812");
+                NuspecConfig testConfig = new NuspecConfig(AssemblieList);
                 XmlNuspec testSpec = new XmlNuspec();
                 XDocument testXDoc = testSpec.CreateNuspec(testConfig);
 
