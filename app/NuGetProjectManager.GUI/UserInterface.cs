@@ -33,6 +33,7 @@ namespace NuGetProjectManager.GUI
         private void btnCreateNuspec_Click(object sender, EventArgs e)
         {
             string AssemblieList = "";
+            //test
             if (clbAssemblieSelect.CheckedItems.Count != 0)
             {
                 for (int x = 0; x <= clbAssemblieSelect.CheckedItems.Count - 1; x++)
