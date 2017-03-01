@@ -10,6 +10,10 @@ namespace NuGetProjectManager.Core
             dependencies.SetAttributeValue("id", config.dependenciesId);
             dependencies.SetAttributeValue("version", config.dependenciesVersion);
 
+            XElement file = new XElement("file");
+            file.SetAttributeValue("src", config.fileScr);
+            file.SetAttributeValue("target", config.fileTarget);
+
             XDocument nuspec = new XDocument(
                 new XElement("package",
                     new XElement("metadata",
@@ -26,7 +30,8 @@ namespace NuGetProjectManager.Core
                         new XElement("copyright", config.copyright),
                         new XElement("tags", config.tags),
                         new XElement("dependencies", dependencies)
-                    )
+                    ),
+                    new XElement("files", file)
                 )
             );
             return nuspec;

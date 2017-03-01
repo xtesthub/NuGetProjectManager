@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Diagnostics;
 using NuGetProjectManager.Core;
+using System.Configuration;
 
 namespace NuGetProjectManager.GUI
 {
@@ -15,47 +16,47 @@ namespace NuGetProjectManager.GUI
 
         private void btnFillProjectList_Click(object sender, EventArgs e)
         {
-            System.IO.DirectoryInfo parentDirectory = new System.IO.DirectoryInfo(@"C:\Visual Studios\projects\NuGetProjectManager\tmp\projectList");
-            //System.IO.DirectoryInfo parentDirectory = new System.IO.DirectoryInfo(@"C:\Visual Studios\projects\NuGetProjectManager\tmp\assemblies");
-            foreach (System.IO.FileInfo f in parentDirectory.GetFiles())
+            System.IO.DirectoryInfo parentDirectory = new System.IO.DirectoryInfo(ConfigurationManager.AppSettings["pathToProjectList"]);
+            foreach (System.IO.FileInfo file in parentDirectory.GetFiles())
             {
-                lbProjectList.Items.Add(f.Name);
+                lbProjectList.Items.Add(file.Name);
             }
         }
 
         private void lbProjectList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clbAssemblieSelect.Items.Clear();
+            clbAssemblySelect.Items.Clear();
             var selectedValue = lbProjectList.SelectedItem.ToString();
-            clbAssemblieSelect.Items.AddRange(System.IO.File.ReadAllLines(@"C:\Visual Studios\projects\NuGetProjectManager\tmp\projectlist\" + selectedValue));
+            clbAssemblySelect.Items.AddRange(System.IO.File.ReadAllLines(ConfigurationManager.AppSettings["pathToProjectList"] + selectedValue));
         }
 
         private void btnCreateNuspec_Click(object sender, EventArgs e)
         {
-            string AssemblieList = "";
-            //test
-            if (clbAssemblieSelect.CheckedItems.Count != 0)
+            var appSettings = ConfigurationManager.AppSettings;
+            string AssemblyList = "";
+            if (clbAssemblySelect.CheckedItems.Count != 0)
             {
-                for (int x = 0; x <= clbAssemblieSelect.CheckedItems.Count - 1; x++)
+                for (int x = 0; x <= clbAssemblySelect.CheckedItems.Count - 1; x++)
                 {
                     if(x > 0)
                     {
-                        AssemblieList = AssemblieList + "," + clbAssemblieSelect.CheckedItems[x].ToString();
+                        AssemblyList = AssemblyList + "," + clbAssemblySelect.CheckedItems[x].ToString();
                     }
                     else
                     {
-                        AssemblieList = clbAssemblieSelect.CheckedItems[x].ToString();
+                        AssemblyList = clbAssemblySelect.CheckedItems[x].ToString();
                     }
                 }
 
-                MessageBox.Show(AssemblieList);
-                NuspecConfig testConfig = new NuspecConfig(AssemblieList);
+                MessageBox.Show(AssemblyList);
+                NuspecConfig testConfig = new NuspecConfig(AssemblyList);
                 XmlNuspec testSpec = new XmlNuspec();
                 XDocument testXDoc = testSpec.CreateNuspec(testConfig);
 
-                testXDoc.Save(@"C:\Visual Studios\projects\NuGetProjectManager\tmp\data\xmlNuspec.xml.nuspec", SaveOptions.None);
-                string nugetPath = @"C:\Visual Studios\nuget\nuget.exe";
-                string nugetArg = @"C:\Visual Studios\projects\NuGetProjectManager\tmp\data\xmlNuspec.xml.nuspec";
+                testXDoc.Save(ConfigurationManager.AppSettings["pathToNuspecFile"], SaveOptions.None);
+                string nugetPath = ConfigurationManager.AppSettings["pathToNugetExe"];
+                string nugetArg = ConfigurationManager.AppSettings["pathToNuspecFile"];
+
                 var dbgP = Process.Start(nugetPath, $"pack \"{nugetArg}\"");
                 MessageBox.Show("parsing done");
             }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lbProjectList = new System.Windows.Forms.ListBox();
-            this.clbAssemblieSelect = new System.Windows.Forms.CheckedListBox();
+            this.clbAssemblySelect = new System.Windows.Forms.CheckedListBox();
             this.btnFillProjectList = new System.Windows.Forms.Button();
             this.btnCreateNuspec = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -40,16 +40,16 @@
             this.lbProjectList.Location = new System.Drawing.Point(12, 41);
             this.lbProjectList.Name = "lbProjectList";
             this.lbProjectList.Size = new System.Drawing.Size(200, 264);
-            lbProjectList.TabIndex = 0;
+            this.lbProjectList.TabIndex = 0;
             this.lbProjectList.SelectedIndexChanged += new System.EventHandler(this.lbProjectList_SelectedIndexChanged);
             // 
-            // clbAssemblieSelect
+            // clbAssemblySelect
             // 
-            this.clbAssemblieSelect.FormattingEnabled = true;
-            this.clbAssemblieSelect.Location = new System.Drawing.Point(229, 40);
-            this.clbAssemblieSelect.Name = "clbAssemblieSelect";
-            this.clbAssemblieSelect.Size = new System.Drawing.Size(200, 259);
-            this.clbAssemblieSelect.TabIndex = 1;
+            this.clbAssemblySelect.FormattingEnabled = true;
+            this.clbAssemblySelect.Location = new System.Drawing.Point(229, 40);
+            this.clbAssemblySelect.Name = "clbAssemblySelect";
+            this.clbAssemblySelect.Size = new System.Drawing.Size(200, 259);
+            this.clbAssemblySelect.TabIndex = 1;
             // 
             // btnFillProjectList
             // 
@@ -78,7 +78,7 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.btnCreateNuspec);
             this.Controls.Add(this.btnFillProjectList);
-            this.Controls.Add(this.clbAssemblieSelect);
+            this.Controls.Add(this.clbAssemblySelect);
             this.Controls.Add(this.lbProjectList);
             this.Name = "UserInterface";
             this.Text = "NuGetProjectManager";
@@ -89,7 +89,7 @@
         #endregion
 
         private System.Windows.Forms.ListBox lbProjectList;
-        private System.Windows.Forms.CheckedListBox clbAssemblieSelect;
+        private System.Windows.Forms.CheckedListBox clbAssemblySelect;
         private System.Windows.Forms.Button btnFillProjectList;
         private System.Windows.Forms.Button btnCreateNuspec;
     }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>libcurl.dll</id>
+    <id>libcurl.dll,libiconv-2.dll</id>
     <version>1.0.0</version>
     <authors>no authors</authors>
     <owners>no authors</owners>
@@ -17,4 +17,7 @@
       <dependency id="NoDependencies" version="1.0" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="" target="" />
+  </files>
 </package>

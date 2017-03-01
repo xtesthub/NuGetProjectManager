@@ -22,6 +22,12 @@ namespace NuGetProjectManager.Core
         public string tags;
         public string dependenciesId;
         public string dependenciesVersion;
+        public string fileScr;
+        public string fileTarget;
+        /*
+         *  file.SetAttributeValue("src", config.src);
+         *  file.SetAttributeValue("target", config.target);
+         */
 
         public NuspecConfig(string _id = "no id")
         {
@@ -39,6 +45,8 @@ namespace NuGetProjectManager.Core
             tags = "no tags";
             dependenciesId = "NoDependencies";
             dependenciesVersion = "1.0";
+            fileScr = "";
+            fileTarget = "";
         }
     }
 }
