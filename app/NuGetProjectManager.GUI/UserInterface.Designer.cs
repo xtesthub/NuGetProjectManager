@@ -32,6 +32,11 @@
             this.clbAssemblySelect = new System.Windows.Forms.CheckedListBox();
             this.btnFillProjectList = new System.Windows.Forms.Button();
             this.btnCreateNuspec = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.newListBoxProjectDir = new System.Windows.Forms.ListBox();
+            this.newListBoxVersionList = new System.Windows.Forms.ListBox();
+            this.newCheckedListBoxDllList = new System.Windows.Forms.CheckedListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbProjectList
@@ -39,16 +44,16 @@
             this.lbProjectList.FormattingEnabled = true;
             this.lbProjectList.Location = new System.Drawing.Point(12, 41);
             this.lbProjectList.Name = "lbProjectList";
-            this.lbProjectList.Size = new System.Drawing.Size(200, 264);
+            this.lbProjectList.Size = new System.Drawing.Size(200, 82);
             this.lbProjectList.TabIndex = 0;
             this.lbProjectList.SelectedIndexChanged += new System.EventHandler(this.lbProjectList_SelectedIndexChanged);
             // 
             // clbAssemblySelect
             // 
             this.clbAssemblySelect.FormattingEnabled = true;
-            this.clbAssemblySelect.Location = new System.Drawing.Point(229, 40);
+            this.clbAssemblySelect.Location = new System.Drawing.Point(218, 41);
             this.clbAssemblySelect.Name = "clbAssemblySelect";
-            this.clbAssemblySelect.Size = new System.Drawing.Size(200, 259);
+            this.clbAssemblySelect.Size = new System.Drawing.Size(200, 79);
             this.clbAssemblySelect.TabIndex = 1;
             // 
             // btnFillProjectList
@@ -71,11 +76,49 @@
             this.btnCreateNuspec.UseVisualStyleBackColor = true;
             this.btnCreateNuspec.Click += new System.EventHandler(this.btnCreateNuspec_Click);
             // 
+            // newListBoxProjectDir
+            // 
+            this.newListBoxProjectDir.Location = new System.Drawing.Point(22, 317);
+            this.newListBoxProjectDir.Name = "newListBoxProjectDir";
+            this.newListBoxProjectDir.Size = new System.Drawing.Size(142, 121);
+            this.newListBoxProjectDir.TabIndex = 5;
+            this.newListBoxProjectDir.SelectedIndexChanged += new System.EventHandler(this.newListBoxProjectDir_SelectedIndexChanged);
+            // 
+            // newListBoxVersionList
+            // 
+            this.newListBoxVersionList.FormattingEnabled = true;
+            this.newListBoxVersionList.Location = new System.Drawing.Point(181, 317);
+            this.newListBoxVersionList.Name = "newListBoxVersionList";
+            this.newListBoxVersionList.Size = new System.Drawing.Size(117, 121);
+            this.newListBoxVersionList.TabIndex = 6;
+            // 
+            // newCheckedListBoxDllList
+            // 
+            this.newCheckedListBoxDllList.FormattingEnabled = true;
+            this.newCheckedListBoxDllList.Location = new System.Drawing.Point(313, 317);
+            this.newCheckedListBoxDllList.Name = "newCheckedListBoxDllList";
+            this.newCheckedListBoxDllList.Size = new System.Drawing.Size(120, 124);
+            this.newCheckedListBoxDllList.TabIndex = 7;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(22, 277);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // UserInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.newCheckedListBoxDllList);
+            this.Controls.Add(this.newListBoxVersionList);
+            this.Controls.Add(this.newListBoxProjectDir);
             this.Controls.Add(this.btnCreateNuspec);
             this.Controls.Add(this.btnFillProjectList);
             this.Controls.Add(this.clbAssemblySelect);
@@ -92,6 +135,11 @@
         private System.Windows.Forms.CheckedListBox clbAssemblySelect;
         private System.Windows.Forms.Button btnFillProjectList;
         private System.Windows.Forms.Button btnCreateNuspec;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ListBox newListBoxProjectDir;
+        private System.Windows.Forms.ListBox newListBoxVersionList;
+        private System.Windows.Forms.CheckedListBox newCheckedListBoxDllList;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -4,6 +4,7 @@ using System.Xml.Linq;
 using System.Diagnostics;
 using NuGetProjectManager.Core;
 using System.Configuration;
+using System.IO;
 
 namespace NuGetProjectManager.GUI
 {
@@ -32,20 +33,42 @@ namespace NuGetProjectManager.GUI
 
         private void btnCreateNuspec_Click(object sender, EventArgs e)
         {
-            var appSettings = ConfigurationManager.AppSettings;
+            //copy selected Files to buildDirectory
+            //File.Copy(ConfigurationManager.AppSettings["pathToProjectList"], ConfigurationManager.AppSettings["pathToBuildDirectory"]);
             string AssemblyList = "";
             if (clbAssemblySelect.CheckedItems.Count != 0)
             {
                 for (int x = 0; x <= clbAssemblySelect.CheckedItems.Count - 1; x++)
                 {
-                    if(x > 0)
+                    string filePath = ConfigurationManager.AppSettings["pathToAssemblies"] + clbAssemblySelect.CheckedItems[x].ToString();
+                    if(!Directory.Exists(ConfigurationManager.AppSettings["pathToBuildDirectory"]))
                     {
-                        AssemblyList = AssemblyList + "," + clbAssemblySelect.CheckedItems[x].ToString();
+                        Directory.CreateDirectory(ConfigurationManager.AppSettings["pathToBuildDirectory"]);
+                        MessageBox.Show(ConfigurationManager.AppSettings["pathToBuildDirectory"] + " nicht gefunden. Verzeichnis wurde angelegt.");
+
+                    }
+
+                    string destinationPath = ConfigurationManager.AppSettings["pathToBuildDirectory"] + clbAssemblySelect.CheckedItems[x].ToString();
+                    if (!File.Exists(destinationPath))
+                    {
+                        File.Copy(filePath, destinationPath);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Datei befindet sich bereits im Zielverzeichnis.");
+                    }
+                    
+
+
+                    if (x > 0)
+                    {
+                        AssemblyList += "," + clbAssemblySelect.CheckedItems[x].ToString();                        
                     }
                     else
                     {
                         AssemblyList = clbAssemblySelect.CheckedItems[x].ToString();
                     }
+
                 }
 
                 MessageBox.Show(AssemblyList);
@@ -63,6 +86,20 @@ namespace NuGetProjectManager.GUI
             else
             {
                 MessageBox.Show("Keine Einträge ausgewählt.");
+            }
+        }
+
+        private void newListBoxProjectDir_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string[] subdirectoryEntries = Directory.GetDirectories();
+            foreach (string subdirectory in subdirectoryEntries)
+            {
+                newListBoxProjectDir.Items.Add(subdirectory);
             }
         }
     }
